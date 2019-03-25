@@ -1,0 +1,6 @@
+[submodule "master-server"]
+	path = master-server
+	url = https://github.com/Ochii/cso2-master-server
+[submodule "users-service"]
+	path = users-service
+	url = https://github.com/Ochii/cso2-users-service
