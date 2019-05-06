@@ -4,3 +4,9 @@
 [submodule "users-service"]
 	path = users-service
 	url = https://github.com/Ochii/cso2-users-service
+[submodule "webapp"]
+	path = webapp
+	url = https://github.com/Ochii/cso2-webapp
+[submodule "inventory-service"]
+	path = inventory-service
+	url = https://github.com/Ochii/cso2-inventory-service
