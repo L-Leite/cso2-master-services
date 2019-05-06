@@ -4,3 +4,11 @@ logs
 
 # ignore vscode config files
 /.vscode/
+
+# ignore mongodb's database files
+/db
+
+.env
+
+# ignore default docker-compose file
+/docker-compose.yml
