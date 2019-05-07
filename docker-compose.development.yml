@@ -13,6 +13,10 @@ services:
     ports:
       - 30001:30001
       - 30002:30002
+    depends_on:
+      - registrator
+      - users-service
+      - inventory-service
     networks:
       - consul
   users-service:
@@ -26,8 +30,9 @@ services:
       DB_PORT: 27017
       DB_NAME: cso2
     ports:
-      - 30100
+      - 30100:30100
     depends_on:
+      - registrator
       - mongo
     networks:
       - consul
@@ -42,8 +47,9 @@ services:
       DB_PORT: 27017
       DB_NAME: cso2
     ports:
-      - 30101
+      - 30101:30101
     depends_on:
+      - registrator
       - mongo
     networks:
       - consul
@@ -59,8 +65,9 @@ services:
       INVSERVICE_HOST: cso2-inventory-service.consul
       INVSERVICE_PORT: 30101
     ports:
-      - 8080
+      - 8080:8080
     depends_on:
+      - registrator
       - users-service
       - inventory-service
     networks:
@@ -80,8 +87,7 @@ services:
     image: 'consul:latest'
     restart: always
     volumes:
-      - './consul.d:/etc/consul.d'
-    command: '-ui'
+      - consul:/etc/consul.d
     ports:
       - 8300:8300
       - 8301:8301
@@ -109,6 +115,8 @@ services:
     restart: always
     links:
       - consul
+    depends_on:
+      - consul
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
     networks:
@@ -117,3 +125,5 @@ networks:
   consul:
     external:
       name: consul
+volumes:
+  consul:

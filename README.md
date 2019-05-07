@@ -7,18 +7,9 @@ You may use [```docker-compose```](https://docs.docker.com/compose/) to run thes
 You can also get [client launcher](https://github.com/Ochii/cso2-launcher/) to use with this.
 
 
-## Services bundled
-
-The following services bundled in this repository:
-
-- [cso2-master-server](https://github.com/Ochii/cso2-master-server)
-- [cso2-users-service](https://github.com/Ochii/cso2-users-service)
-- [cso2-inventory-service](https://github.com/Ochii/cso2-inventory-service)
-- [cso2-webapp](https://github.com/Ochii/cso2-webapp)
-
 ## Running all the services with ```docker-compose```
 
-You must have installed [```docker-compose```](https://docs.docker.com/compose/) in order to run the services all at once.
+You must have installed both [```docker```](https://docs.docker.com/) and [```docker-compose```](https://docs.docker.com/compose/) in order to run the services all at once.
 
 ### Preparation
 
@@ -33,6 +24,15 @@ Rename the configuration file you prefer to `docker-compose.yml` so you can use 
 If this is your first time running the services, use ```docker-compose up -d``` to start them. If not you can use ```docker-compose start -d```.
 
 To stop the services, enter ```docker-compose down```.
+
+## Services bundled
+
+The following services bundled in this repository:
+
+- [cso2-master-server](https://github.com/Ochii/cso2-master-server)
+- [cso2-users-service](https://github.com/Ochii/cso2-users-service)
+- [cso2-inventory-service](https://github.com/Ochii/cso2-inventory-service)
+- [cso2-webapp](https://github.com/Ochii/cso2-webapp)
 
 ## Pull requests
 

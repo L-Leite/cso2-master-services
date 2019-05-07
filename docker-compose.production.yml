@@ -4,6 +4,7 @@ services:
     container_name: cso2-master-server
     image: cso2-master-server
     build: ./master-server
+    restart: always
     environment:
       NODE_ENV: production
       USERSERVICE_HOST: cso2-users-service.consul
@@ -19,6 +20,7 @@ services:
     container_name: cso2-users-service
     image: cso2-users-service
     build: ./users-service
+    restart: always
     environment:
       NODE_ENV: production
       USERS_PORT: 30100
@@ -28,6 +30,7 @@ services:
     ports:
       - 30100
     depends_on:
+      - registrator
       - mongo
     networks:
       - consul
@@ -35,6 +38,7 @@ services:
     container_name: cso2-inventory-service
     image: cso2-inventory-service
     build: ./inventory-service
+    restart: always
     environment:
       NODE_ENV: production
       INVENTORY_PORT: 30101
@@ -44,6 +48,7 @@ services:
     ports:
       - 30101
     depends_on:
+      - registrator
       - mongo
     networks:
       - consul
@@ -51,6 +56,7 @@ services:
     container_name: cso2-webapp
     image: cso2-webapp
     build: ./webapp
+    restart: always
     environment:
       NODE_ENV: production
       WEBAPP_PORT: 8080
@@ -59,8 +65,9 @@ services:
       INVSERVICE_HOST: cso2-inventory-service.consul
       INVSERVICE_PORT: 30101
     ports:
-      - 8080
+      - 8080:8080
     depends_on:
+      - registrator
       - users-service
       - inventory-service
     networks:
@@ -80,8 +87,7 @@ services:
     image: 'consul:latest'
     restart: always
     volumes:
-      - './consul.d:/etc/consul.d'
-    command: '-ui'
+      - consul:/etc/consul.d
     ports:
       - 8300
       - 8301
@@ -90,10 +96,11 @@ services:
     entrypoint:
       - consul
       - agent
-      - -server
-      - -config-dir=/etc/consul.d
-      - -bind={{ GetInterfaceIP "eth0" }}
-      - -client=0.0.0.0
+      - '-server'
+      - '-config-dir=/etc/consul.d'
+      - '-data-dir=/opt/consul'
+      - '-bind={{ GetInterfaceIP "eth0" }}'
+      - '-client=0.0.0.0'
     networks:
       - consul
     labels:
@@ -106,6 +113,8 @@ services:
     restart: always
     links:
       - consul
+    depends_on:
+      - consul
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
     networks:
@@ -114,3 +123,5 @@ networks:
   consul:
     external:
       name: consul
+volumes:
+  consul:
