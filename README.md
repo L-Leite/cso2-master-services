@@ -6,6 +6,17 @@ You may use [```docker-compose```](https://docs.docker.com/compose/) to run thes
 
 You can also get [client launcher](https://github.com/Ochii/cso2-launcher/) to use with this.
 
+## Communities
+
+You can find other players in these.
+
+If your community isn't listed here feel free to open pull request with it.
+
+*Note: These communities are not run by the repository owner.*
+
+- [Counter Strike Online Wiki's discord](https://discord.gg/GKPgrBG) (discuss at #cso2-project-discussion)
+- [CSO2 Revive](https://discord.gg/3tydYTC) (in Korean)
+
 
 ## Running all the services with ```docker-compose```
 
