@@ -16,6 +16,7 @@ If your community isn't listed here feel free to open pull request with it.
 
 - [Counter Strike Online Wiki's discord](https://discord.gg/GKPgrBG) (discuss at #cso2-project-discussion)
 - [CSO2 Revive](https://discord.gg/3tydYTC) (in Korean)
+- [Counter-Strike Online 2 - EU/RU Server](https://discord.gg/yue5Zaf) (in English)
 
 
 ## Running all the services with ```docker-compose```
