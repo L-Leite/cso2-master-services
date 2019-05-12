@@ -2,6 +2,8 @@
 
 This repository includes all the services required to run a master server for Nexon's Counter-Strike: Online 2.
 
+**The master server is currently in development and is missing many features.** You can keep track of the project's progress [here](https://github.com/Ochii/cso2-master-services/projects/1).
+
 You may use [```docker-compose```](https://docs.docker.com/compose/) to run these services all at once, or run separate services in separate servers.
 
 You can also get [client launcher](https://github.com/Ochii/cso2-launcher/) to use with this.
