@@ -12,7 +12,7 @@ services:
       INVSERVICE_PORT: 30101
     ports:
       - 30001:30001
-      - 30002:30002
+      - 30002:30002/udp
     depends_on:
       - registrator
       - users-service
