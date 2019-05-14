@@ -2,11 +2,10 @@
 
 This repository includes all the services required to run a master server for Nexon's Counter-Strike: Online 2.
 
-**The master server is currently in development and is missing many features.** You can keep track of the project's progress [here](https://github.com/Ochii/cso2-master-services/projects/1).
+**The master server is currently in development and is missing many features.**
+You can keep track of the project's progress [here](https://github.com/Ochii/cso2-master-services/projects/1).
 
-You may use [```docker-compose```](https://docs.docker.com/compose/) to run these services all at once, or run separate services in separate servers.
-
-You can also get [client launcher](https://github.com/Ochii/cso2-launcher/) to use with this.
+You can get [this client launcher](https://github.com/Ochii/cso2-launcher/) to play in the server.
 
 ## Communities
 
@@ -21,12 +20,71 @@ If your community isn't listed here feel free to open pull request with it.
 - [Counter-Strike Online 2 - EU/RU Server](https://discord.gg/yue5Zaf) (in English)
 - [反恐精英Online2(CSOL2)](https://jq.qq.com/?k=5fcK4OO) (in China, you will need [QQ](https://www.imqq.com/English1033.html) if you are not Chinese)
 
+## Running the services
 
-## Running all the services with ```docker-compose```
+You must have the following installed and in your path:
+- Node.js
+- MongoDB
+- cURL
+- git
+- tar
+
+### Setting up
+
+*Note: If you want to use `docker-compose`, see [Running the services with `docker-compose`](#Running-the-services-with-docker-compose)*.
+
+To download the services, go to the master-services directory in a shell, and:
+
+(In a *nix environment:)
+
+```sh
+./setup_services.sh # downloads the required services
+```
+
+(In a Windows environment:)
+
+```powershell
+.\setup_services.ps1 # downloads the required services
+```
+
+If you want to build them yourself instead, do:
+
+(In a *nix environment:)
+
+```sh
+git submodule update # fetches the services source code
+./setup_services.sh --build-services # builds the required services
+```
+
+(In a Windows environment:)
+
+```powershell
+git submodule update # fetches the services source code
+.\setup_services.ps1 -build-services # builds the required services
+```
+
+### Starting the services
+
+To start the services, do:
+
+(In a *nix environment:)
+
+```sh
+./start_services.sh # starts the services
+```
+
+(In a Windows environment:)
+```powershell
+.\start_services.ps1 # starts the services
+```
+
+In *nix systems, you can stop the services by pressing CTRL+C in the shell.
+
+## Running the services with ```docker-compose```
 
 You must have installed both [```docker```](https://docs.docker.com/) and [```docker-compose```](https://docs.docker.com/compose/) in order to run the services all at once.
 
-### Preparation
+### Setting up with ```docker-compose```
 
 The repository has two ```docker-compose``` configuration files, `docker-compose.development.yml` and `docker-compose.production.yml`.
 
@@ -34,11 +92,11 @@ The repository has two ```docker-compose``` configuration files, `docker-compose
 
 Rename the configuration file you prefer to `docker-compose.yml` so you can use it with ```docker-compose```.
 
-### Startup
+### Starting the services with ```docker-compose```
 
 If this is your first time running the services, use ```docker-compose up -d``` to start them. If not you can use ```docker-compose start -d```.
 
-To stop the services, enter ```docker-compose down```.
+To stop the services, use ```docker-compose down```.
 
 ## Services bundled
 
@@ -53,12 +111,12 @@ The following services bundled in this repository:
 
 Pull requests are very much welcome.
 
-Before you create one, be sure you're in the right repository. See [Services bundled](##Services-bundled) for a list of repositores bundled here.
+Before you create one, be sure you're in the right repository.
 
-Also please read the [contributing guide](https://github.com/Ochii/cso2-master-services/blob/master/.github/PULL_REQUEST_TEMPLATE.md) before contributing.
+See [Services bundled](##Services-bundled) for a list of the services bundled here.
 
 ## License
 
-Read ```LICENSE``` for the project's license information.
+Read `LICENSE` for the project's license information.
 
 This project is not affiliated with either Valve or Nexon. Counter-Strike: Online 2 is owned by these companies.
