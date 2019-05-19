@@ -60,7 +60,7 @@ git submodule update # fetches the services source code
 
 ```powershell
 git submodule update # fetches the services source code
-.\setup_services.ps1 -build-services # builds the required services
+.\setup_services.ps1 -BuildServices # builds the required services
 ```
 
 ### Starting the services
