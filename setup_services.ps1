@@ -9,8 +9,7 @@ function get_latest_build_tag() {
 function fetch_service_build_url() {
     param( [string]$FetchRepoOwner, [string]$FetchRepoName, [string]$FetchBuildTag )
 
-    $rawData = $(curl -s "https://api.github.com/repos/$FetchRepoOwner/$FetchRepoName/releases/tags/$FetchBuildTag")
-    $buildData = $rawData | ConvertFrom-Json
+    $buildData = Invoke-Webrequest "https://api.github.com/repos/$FetchRepoOwner/$FetchRepoName/releases/tags/$FetchBuildTag" | ConvertFrom-Json
     return $buildData.assets[0].browser_download_url
 }
 
@@ -24,7 +23,7 @@ function download_latest_service_build() {
 
     $buildArchiveName = "build.tar.gz"
 
-    curl -L $buildUrl --output $buildArchiveName
+    Invoke-Webrequest $buildUrl -OutFile $buildArchiveName
     tar -xzf $buildArchiveName
     Remove-Item $buildArchiveName
 }
