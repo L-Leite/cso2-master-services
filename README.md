@@ -40,12 +40,14 @@ To download the services, go to the master-services directory in a shell, and:
 (In a *nix environment:)
 
 ```sh
+git submodule update --init # needed to get the services' versions
 ./setup_services.sh # downloads the required services
 ```
 
 (In a Windows environment:)
 
 ```powershell
+git submodule update --init # needed to get the services' versions
 .\setup_services.ps1 # downloads the required services
 ```
 
@@ -54,14 +56,14 @@ If you want to build them yourself instead, do:
 (In a *nix environment:)
 
 ```sh
-git submodule update # fetches the services source code
+git submodule update --init # fetches the services source code
 ./setup_services.sh --build-services # builds the required services
 ```
 
 (In a Windows environment:)
 
 ```powershell
-git submodule update # fetches the services source code
+git submodule update --init # fetches the services source code
 .\setup_services.ps1 -BuildServices # builds the required services
 ```
 
