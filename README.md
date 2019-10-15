@@ -33,6 +33,8 @@ You must have the following installed and in your path:
 
 *Note: If you want to use `docker-compose`, see [Running the services with `docker-compose`](#Running-the-services-with-docker-compose)*.
 
+The Powershell scripts must be run in Powershell version 4 or better.
+
 To download the services, go to the master-services directory in a shell, and:
 
 (In a *nix environment:)
