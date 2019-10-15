@@ -28,6 +28,25 @@ function download_latest_service_build() {
     Remove-Item $buildArchiveName
 }
 
+function handle_submodule() {
+    param( [string]$submoduleName, [string]$submodulePath )
+
+    Push-Location $submodulePath
+
+    if ($buildServices -eq $true) {
+        Write-Host "Building service L-Leite/$submoduleName"
+        npm i
+        npx gulp build
+    }
+    else {
+        Write-Host "Fetching service L-Leite/$submoduleName"
+        download_latest_service_build L-Leite $submoduleName
+        npm i --only=production
+    }
+
+    Pop-Location
+}
+
 if ($buildServices -eq $true) {
     Write-Host "The user selected to build services..."
 }
@@ -35,57 +54,10 @@ else {
     Write-Host "The user selected to download services prebuilds..."
 }
 
-Set-Location .\master-server
-if ($buildServices -eq $true) {
-    Write-Host "Building service Ochii/cso2-master-server"
-    npm i
-    npx gulp build
-}
-else {
-    Write-Host "Fetching service Ochii/cso2-master-server"
-    download_latest_service_build Ochii cso2-master-server
-    npm i --only=production
-}
-Set-Location ..\
-
-Set-Location .\users-service
-if ($buildServices -eq $true) {
-    Write-Host "Building service Ochii/cso2-users-service"
-    npm i
-    npx gulp build
-}
-else {
-    Write-Host "Fetching service Ochii/cso2-users-service"
-    download_latest_service_build Ochii cso2-users-service
-    npm i --only=production
-}
-Set-Location ..\
-
-Set-Location .\inventory-service
-if ($buildServices -eq $true) {
-    Write-Host "Building service Ochii/cso2-inventory-service"
-    npm i
-    npx gulp build
-}
-else {
-    Write-Host "Fetching service Ochii/cso2-inventory-service"
-    download_latest_service_build Ochii cso2-inventory-service
-    npm i --only=production
-}
-Set-Location ..\
-
-Set-Location .\webapp
-if ($buildServices -eq $true) {
-    Write-Host "Building service Ochii/cso2-webapp"
-    npm i
-    npx gulp build
-}
-else {
-    Write-Host "Fetching service Ochii/cso2-webapp"
-    download_latest_service_build Ochii cso2-webapp
-    npm i --only=production
-}
-Set-Location ..\
+handle_submodule "cso2-master-server" "master-server"
+handle_submodule "cso2-users-service" "users-service"
+handle_submodule "cso2-inventory-service" "inventory-service"
+handle_submodule "cso2-webapp" "webapp"
 
 if ($buildServices -eq $true) {
     Write-Host "Built services successfully"
