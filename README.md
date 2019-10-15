@@ -18,7 +18,7 @@ If your community isn't listed here feel free to open pull request with it.
 - [Counter Strike Online Wiki's discord](https://discord.gg/GKPgrBG) (discuss at #cso2-project-discussion)
 - [CSO2 Revive](https://discord.gg/3tydYTC) (in Korean)
 - [Counter-Strike Online 2 - EU/RU Server](https://discord.gg/yue5Zaf) (in English)
-- [反恐精英Online2(CSOL2)](https://jq.qq.com/?k=5fcK4OO) (in China, you will need [QQ](https://www.imqq.com/English1033.html) if you are not Chinese)
+- [反恐精英Online2(CSOL2)](https://jq.qq.com/?k=5PMEa6y) (in China, you will need [QQ](https://www.imqq.com/English1033.html) if you are not Chinese)
 
 ## Running the services
 
