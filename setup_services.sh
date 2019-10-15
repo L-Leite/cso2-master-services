@@ -10,7 +10,7 @@ set -e
 SHOULD_BUILD_SERVICES=0
 
 get_latest_build_tag() {
-    git describe --tags $(git rev-list --tags --max-count=1)
+    git describe --tags "$(git rev-list --tags --max-count=1)"
 }
 
 fetch_service_build_url() {
@@ -20,7 +20,7 @@ fetch_service_build_url() {
 
     curl -Ls "https://api.github.com/repos/$FETCH_REPO_OWNER/$FETCH_REPO_NAME/releases/tags/$FETCH_BUILD_TAG" |
         grep "browser_download_url" |
-        cut -d \: -f 2,3 |
+        cut -d '\:' -f 2,3 |
         tr -d "\"\ "
 }
 
@@ -29,22 +29,22 @@ download_latest_service_build() {
     SERVICE_OWNER=$2
 
     LAST_TAG=$(get_latest_build_tag)
-    BUILD_URL=$(fetch_service_build_url $SERVICE_OWNER $SERVICE_NAME $LAST_TAG)
+    BUILD_URL=$(fetch_service_build_url "$SERVICE_OWNER" "$SERVICE_NAME" "$LAST_TAG")
     echo "Downloading $BUILD_URL"
 
-    curl -L $BUILD_URL | tar -xz
+    curl -L "$BUILD_URL" | tar -xz
 }
 
 handle_submodule() {
     SUBMODULE_NAME=$1
     SUBMODULE_DIR=$2
 
-    cd ./${SUBMODULE_DIR}
-    if [ $SHOULD_BUILD_SERVICES == 0 ]; then
+    cd ./"${SUBMODULE_DIR}"
+    if [ $SHOULD_BUILD_SERVICES = 0 ]; then
         echo "Fetching ${SUBMODULE_NAME}"
-        download_latest_service_build $SUBMODULE_NAME L-Leite
+        download_latest_service_build "$SUBMODULE_NAME" L-Leite
         npm i --only=production
-    elif [ $SHOULD_BUILD_SERVICES == 1 ]; then
+    elif [ $SHOULD_BUILD_SERVICES = 1 ]; then
         echo "Building ${SUBMODULE_NAME}"
         npm i
         npx gulp build
@@ -53,13 +53,13 @@ handle_submodule() {
 }
 
 for i in "$@"; do
-    if [ $i == "--build-services" ]; then
+    if [ "$i" = "--build-services" ]; then
         SHOULD_BUILD_SERVICES=1
         echo "The user selected to build services..."
     fi
 done
 
-if [ $SHOULD_BUILD_SERVICES == 0 ]; then
+if [ $SHOULD_BUILD_SERVICES = 0 ]; then
     echo "The user selected to download services prebuilds..."
 fi
 
